@@ -70,7 +70,7 @@ EOT;
     public function getFrameworkPath() 
     {
         return !empty($_SERVER['BEABA_PATH']) ? 
-            $_SERVER['BEABA_PATH'] : realpath('../beaba/framework')
+            $_SERVER['BEABA_PATH'] : '../beaba/framework'
         ;
     }
     
@@ -81,7 +81,7 @@ EOT;
     public function getApplicationPath() {
         return !empty($_SERVER['BEABA_APP']) ? 
             $_SERVER['BEABA_APP'] : 
-            realpath($this->getFrameworkPath() . '/../applications')
+            $this->getFrameworkPath() . '/../applications'
         ;
     }
     
@@ -97,11 +97,7 @@ EOT;
                 return $this->getFrameworkPath();
                 break;
             case self::APPLICATION:
-                $target =  $this->getApplicationPath() . '/' . $name[1];
-                if ( !is_dir($target) ) {
-                    mkdir( $target, 0777, true );
-                }
-                return $target;
+                return $this->getApplicationPath() . '/' . $name[1];
                 break;
             case self::PLUGIN:
                 return $this->getFrameworkPath() . '/plugins/' . $name[1];
