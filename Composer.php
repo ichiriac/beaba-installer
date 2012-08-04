@@ -70,7 +70,7 @@ EOT;
     public function getFrameworkPath() 
     {
         return !empty($_SERVER['BEABA_PATH']) ? 
-            $_SERVER['BEABA_PATH'] : '../beaba/framework'
+            $_SERVER['BEABA_PATH'] : realpath('../beaba/framework')
         ;
     }
     
@@ -81,7 +81,7 @@ EOT;
     public function getApplicationPath() {
         return !empty($_SERVER['BEABA_APP']) ? 
             $_SERVER['BEABA_APP'] : 
-            $this->getFrameworkPath() . '/../applications'
+            realpath($this->getFrameworkPath() . '/../applications')
         ;
     }
     
