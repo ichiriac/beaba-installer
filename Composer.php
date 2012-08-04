@@ -84,7 +84,7 @@ EOT;
     public function getApplicationPath() {
         return !empty($_SERVER['BEABA_APP']) ? 
             $_SERVER['BEABA_APP'] : 
-            $this->getFrameworkPath() . '/../../applications'
+            $this->getFrameworkPath() . '/../applications'
         ;
     }
     
