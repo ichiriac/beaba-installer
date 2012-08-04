@@ -30,19 +30,22 @@ class Composer extends LibraryInstaller
         ) 
         {
             $name = explode('/', $package->getName(), 2);
-            $template = '<?php'.<<<EOT
+            $fw_path = realpath($this->getFrameworkPath());
+            $app_path = realpath($this->getApplicationPath());
+            $template = <<<EOT
+<?php
 // DEFINES APPLICATION PATH
 defined('BEABA_PATH') OR define(
     'BEABA_PATH',
     !empty(\$_SERVER['BEABA_PATH']) ?
     \$_SERVER['BEABA_PATH'] :
-    '{$this->getFrameworkPath()}'
+    '{$fw_path}'
 );
 defined('BEABA_APP') OR define(
     'BEABA_APP',
     !empty(\$_SERVER['BEABA_APP']) ?
     \$_SERVER['BEABA_APP'] :
-    '{$this->getApplicationPath()}'
+    '{$app_path}'
 );
 defined('APP_NAME') OR define(
     'APP_NAME',
@@ -70,7 +73,7 @@ EOT;
     public function getFrameworkPath() 
     {
         return !empty($_SERVER['BEABA_PATH']) ? 
-            $_SERVER['BEABA_PATH'] : '../beaba/framework'
+            $_SERVER['BEABA_PATH'] : '../../beaba/framework'
         ;
     }
     
@@ -81,7 +84,7 @@ EOT;
     public function getApplicationPath() {
         return !empty($_SERVER['BEABA_APP']) ? 
             $_SERVER['BEABA_APP'] : 
-            $this->getFrameworkPath() . '/../applications'
+            $this->getFrameworkPath() . '/../../applications'
         ;
     }
     
