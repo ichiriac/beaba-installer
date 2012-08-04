@@ -24,7 +24,10 @@ class Composer extends LibraryInstaller
     public function install(InstalledRepositoryInterface $repo, PackageInterface $package) 
     {
         parent::install($repo, $package);
-        if ( $package->getType() === self::APPLICATION ) 
+        if ( 
+            $package->getType() === self::APPLICATION 
+            && !file_exists('./index.php')
+        ) 
         {
             $name = explode('/', $package->getName(), 2);
             $template = '<?php'.<<<EOT
@@ -56,7 +59,7 @@ require_once BEABA_PATH . '/bootstrap.php';
 \$app->dispatch();
 EOT;
             // create the website bootstrap
-            file_put_contents('index.php', $template);
+            file_put_contents('./index.php', $template);
         }
     }
     
@@ -78,7 +81,7 @@ EOT;
     public function getApplicationPath() {
         return !empty($_SERVER['BEABA_APP']) ? 
             $_SERVER['BEABA_APP'] : 
-            realpath( $this->getFrameworkPath() . '../applications' )
+            $this->getFrameworkPath() . '/../applications'
         ;
     }
     
@@ -94,10 +97,14 @@ EOT;
                 return $this->getFrameworkPath();
                 break;
             case self::APPLICATION:
-                return $this->getApplicationPath() . '/' . $name[1];
+                $target =  $this->getApplicationPath() . '/' . $name[1];
+                if ( !is_dir($target) ) {
+                    mkdir( $target, 0777, true );
+                }
+                return $target;
                 break;
             case self::PLUGIN:
-                return $this->getFrameworkPath() . '/' . $name[1];
+                return $this->getFrameworkPath() . '/plugins/' . $name[1];
                 break;
             default:
                 throw new \InvalidArgumentException(
