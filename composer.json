@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "beaba\\install": "./"
+            "beaba\\install": "/"
         }
     },
     "extra": {
