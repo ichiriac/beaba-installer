@@ -14,7 +14,7 @@ use Composer\Repository\InstalledRepositoryInterface;
 class Composer extends LibraryInstaller
 {
     
-    const FRAMEWORK     = 'beaba-framework';
+    const FRAMEWORK     = 'beaba-core';
     const APPLICATION   = 'beaba-application';
     const PLUGIN        = 'beaba-plugin';
     
