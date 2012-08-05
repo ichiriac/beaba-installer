@@ -1,7 +1,7 @@
 {
     "name": "beaba/installer",
     "type": "composer-installer",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "Installer tool for beaba framework",
     "homepage": "http://ichiriac.github.com/beaba/",
     "license": "MIT",
@@ -15,8 +15,8 @@
         "php": ">=5.3.0"
     },
     "autoload": {
-        "classmap": {
-            "beaba\\install\\Composer": "Composer.php"
+        "psr-0": {
+            "beaba\\install": "classes/"
         }
     },
     "extra": {
