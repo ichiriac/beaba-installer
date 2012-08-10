@@ -1,7 +1,7 @@
 {
     "name": "beaba/installer",
     "type": "composer-installer",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "Installer tool for beaba framework",
     "homepage": "http://ichiriac.github.com/beaba/",
     "license": "MIT",
@@ -16,9 +16,10 @@
     },
     "autoload": {
         "psr-0": {
-            "beaba\\install": "classes"
+            "beaba\\install": ""
         }
     },
+    "target-dir": "beaba",
     "extra": {
         "class": "beaba\\install\\Composer"
     }
