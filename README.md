@@ -1,4 +1,6 @@
 beaba-installer
 ===============
 
-supports installs for composer
+Supports installs for Beaba framework with the composer tool
+
+See : https://github.com/ichiriac/beaba
